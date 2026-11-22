@@ -169,7 +169,7 @@ function headerPath(line: string): string {
 function parseDiffGit(line: string, n: number): [string, string] {
   const rest = line.slice('diff --git '.length);
   if (!rest.startsWith('a/')) throw new Exit2(`error: parse ${n}`);
-  const sep = rest.indexOf(' b/', 2);
+  const sep = rest.lastIndexOf(' b/');
   if (sep < 0) throw new Exit2(`error: parse ${n}`);
   const x = rest.slice(2, sep);
   const y = rest.slice(sep + 3);
